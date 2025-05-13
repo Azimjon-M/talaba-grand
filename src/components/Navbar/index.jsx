@@ -81,7 +81,7 @@ const Navbar = () => {
                 />
             </div>
 
-            <div className=" flex justify-between items-center w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] ">
+            <div className="flex justify-between items-center w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] ">
                 <Link className="flex items-center gap-2 sm:gap-4" to="/">
                     <div className="w-[40px!important] h-[40px!important] sm:w-[60px!important] sm:h-[60px!important]">
                         <img className="w-full h-full" src={Logo} alt="Logo" />
