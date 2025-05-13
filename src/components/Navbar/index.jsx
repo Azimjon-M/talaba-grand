@@ -105,6 +105,12 @@ const Navbar = () => {
                         className="btn btn-accent btn-sm sm:btn-md p-[3px] sm:p-4"
                         to="/login-user"
                     >
+                        Kirish
+                    </Link>
+                    <Link
+                        className="btn btn-accent btn-sm sm:btn-md p-[3px] sm:p-4"
+                        to="/signin-user"
+                    >
                         Ro'yxatdan o'tish
                     </Link>
                 </div>

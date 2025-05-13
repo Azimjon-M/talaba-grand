@@ -1,19 +1,18 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import CryptoJS from "crypto-js";
+import { Navigate, useLocation } from "react-router";
+import { useAuth } from "../../context/AuthContext"; // Auth contextingiz bo‘lishi kerak
 
-const ProtectedRoute = ({ allowedRoles, children }) => {
-    const data = JSON.parse(localStorage.getItem("data"));
-    if (!data) {
-        return <Navigate to="/not-authorized" />;
+const ProtectedRoute = ({ children, allowedRoles }) => {
+    const { user } = useAuth(); // user: { role: "admin" | "user" | null }
+    const location = useLocation();
+
+    if (!user) {
+        // Agar login qilmagan bo‘lsa
+        return <Navigate to="/login-user" state={{ from: location }} replace />;
     }
 
-    const decryptedRole = CryptoJS.AES.decrypt(data?.role, "")
-        .toString(CryptoJS.enc.Utf8)
-        .trim();
-
-    if (!allowedRoles.includes(decryptedRole)) {
-        return <Navigate to="/not-authorized" />;
+    if (!allowedRoles.includes(user.role)) {
+        // Agar role mos kelmasa
+        return <Navigate to="/not-authorized" replace />;
     }
 
     return children;

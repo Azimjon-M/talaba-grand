@@ -1,6 +1,9 @@
 import Home from "../Pages/Home";
 import Service from "../Pages/Service";
 import LoginUser from "../Pages/LoginUser";
+import SignIn from "../Pages/SignIn";
+import LoginAdmins from "../Pages/LoginAdmins";
+
 
 const routes = [
     {
@@ -9,7 +12,7 @@ const routes = [
         path: "/",
         //   icon: ,
         element: Home,
-        role: ["user"],
+        role: null,
     },
     {
         id: 2,
@@ -17,7 +20,7 @@ const routes = [
         path: "/service",
         //   icon: ,
         element: Service,
-        role: ["user"],
+        role: null,
     },
     {
         id: 3,
@@ -25,7 +28,23 @@ const routes = [
         path: "/login-user",
         //   icon: ,
         element: LoginUser,
-        role: ["user"],
+        role: null,
+    },
+    {
+        id: 4,
+        title: "SignInUser",
+        path: "/signin-user",
+        //   icon: ,
+        element: SignIn,
+        role: null,
+    },
+    {
+        id: 5,
+        title: "LoginAdmin",
+        path: "/login-admin",
+        //   icon: ,
+        element: LoginAdmins,
+        role: null,
     },
 ];
 
