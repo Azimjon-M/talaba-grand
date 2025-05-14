@@ -43,7 +43,7 @@ const UserCabinet = () => {
             file3: null,
         },
         validationSchema,
-        onSubmit: (values) => {
+        onSubmit: (values, { resetForm }) => {
             console.log("Ishladim");
             const formData = new FormData();
             formData.append("file1", values.file);
@@ -52,7 +52,8 @@ const UserCabinet = () => {
 
             console.log("Yuborilayotgan fayl:", values.file);
             alert("Fayl yuborildi!");
-            // Get qilish kerak: jo'natilgan bo'lsa jarayonda qilish kerak.
+            resetForm();
+            // Get qilish kerak: jo'natilgan bo'lsa jarayonda qilish
             // Axios yoki fetch bilan yuborish bu yerda bo‘ladi
         },
     });
@@ -86,83 +87,98 @@ const UserCabinet = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex justify-center items-center px-4">
-            {jpBali >= 3.5 && (
-                <form
-                    onSubmit={formik.handleSubmit}
-                    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md"
-                >
-                    <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white text-center">
-                        Hujjat yuklash
-                    </h2>
+            <div className="w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] p-2 relative ">
+                {jpBali >= 3.5 && (
+                    <form
+                        onSubmit={formik.handleSubmit}
+                        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md mx-auto"
+                    >
+                        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white text-center">
+                            Hujjat yuklash
+                        </h2>
 
-                    <div className="mb-4">
-                        <label
-                            htmlFor="file"
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                        {/* Fayl 1 */}
+                        <div className="mb-4">
+                            <label
+                                htmlFor="file"
+                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                            >
+                                1 Faylni tanlang:
+                            </label>
+                            <input
+                                id="file"
+                                name="file"
+                                type="file"
+                                onChange={handleFileChange}
+                                className="file-input file-input-bordered w-full"
+                            />
+                            {formik.touched.file && formik.errors.file && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {formik.errors.file}
+                                </p>
+                            )}
+                        </div>
+
+                        {/* Fayl 2 */}
+                        <div className="mb-4">
+                            <label
+                                htmlFor="file2"
+                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                            >
+                                2 Faylni tanlang:
+                            </label>
+                            <input
+                                id="file2"
+                                name="file2"
+                                type="file"
+                                onChange={handleFileChange}
+                                className="file-input file-input-bordered w-full"
+                            />
+                            {formik.touched.file2 && formik.errors.file2 && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {formik.errors.file2}
+                                </p>
+                            )}
+                        </div>
+
+                        {/* Fayl 3 */}
+                        <div className="mb-4">
+                            <label
+                                htmlFor="file3"
+                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                            >
+                                3 Faylni tanlang:
+                            </label>
+                            <input
+                                id="file3"
+                                name="file3"
+                                type="file"
+                                onChange={handleFileChange}
+                                className="file-input file-input-bordered w-full"
+                            />
+                            {formik.touched.file3 && formik.errors.file3 && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {formik.errors.file3}
+                                </p>
+                            )}
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="btn btn-primary w-full"
                         >
-                            1 Faylni tanlang:
-                        </label>
-                        <input
-                            id="file"
-                            name="file"
-                            type="file"
-                            onChange={handleFileChange}
-                            className="file-input file-input-bordered w-full"
-                        />
-                        {formik.touched.file && formik.errors.file && (
-                            <p className="text-red-500 text-sm mt-1">
-                                {formik.errors.file}
-                            </p>
-                        )}
-                    </div>
-
-                    <div className="mb-4">
-                        <label
-                            htmlFor="file"
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                        >
-                            2 Faylni tanlang:
-                        </label>
-                        <input
-                            id="file2"
-                            name="file2"
-                            type="file"
-                            onChange={handleFileChange}
-                            className="file-input file-input-bordered w-full"
-                        />
-                        {formik.touched.file2 && formik.errors.file2 && (
-                            <p className="text-red-500 text-sm mt-1">
-                                {formik.errors.file2}
-                            </p>
-                        )}
-                    </div>
-
-                    <div className="mb-4">
-                        <label
-                            htmlFor="file"
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                        >
-                            3 Faylni tanlang:
-                        </label>
-                        <input
-                            id="file3"
-                            name="file3"
-                            type="file"
-                            onChange={handleFileChange}
-                            className="file-input file-input-bordered w-full"
-                        />
-                        {formik.touched.file3 && formik.errors.file3 && (
-                            <p className="text-red-500 text-sm mt-1">
-                                {formik.errors.file3}
-                            </p>
-                        )}
-                    </div>
-
-                    <button type="submit" className="btn btn-primary w-full">
-                        Yuborish
-                    </button>
-                </form>
-            )}
+                            Yuborish
+                        </button>
+                    </form>
+                )}
+            </div>
+            {/* Asosiy sahifaga qaytish tugmasi */}
+            <button
+                onClick={() => navigate("/")}
+                className="btn btn-info fixed right-4 bottom-4 md:absolute md:right-0 md:bottom-0 m-2 md:m-8 lg:m-12 xl:m-20"
+            >
+                Asosiy sahifaga qaytish
+            </button>
 
             {showModal && (
                 <Modal
