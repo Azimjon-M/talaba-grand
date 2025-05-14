@@ -41,11 +41,11 @@ const LoginUser = () => {
 
     const formik = useFormik({
         initialValues: {
-            hemsId: "",
-            password: "",
+            hemsId: "11111111111111",
+            password: "user123",
         },
         validationSchema,
-        onSubmit: (values) => {
+        onSubmit: (values, {resetForm}) => {
             // Parol va username to'g'ri bo'lsa, modalni ochish
             if (values.password === "user123") {
                 const userData = {
@@ -58,7 +58,7 @@ const LoginUser = () => {
                 // Contextdagi userni o‘rnat
                 login(userData);
                 setIsModalOpen(true);
-                resetForm();
+                // resetForm();
             } else {
                 formik.setFieldError(
                     "password",

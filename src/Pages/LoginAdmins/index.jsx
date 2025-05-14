@@ -32,8 +32,8 @@ const AdminLogin = () => {
     // Formik setup
     const formik = useFormik({
         initialValues: {
-            username: "",
-            password: "",
+            username: "admin",
+            password: "admin123",
         },
         validationSchema,
         onSubmit: (values) => {
