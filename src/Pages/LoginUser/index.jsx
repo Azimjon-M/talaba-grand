@@ -3,25 +3,34 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router";
+import Modal from "../../components/Modal";
+import { useAuth } from "../../context/AuthContext";
+
 
 const LoginUser = () => {
+    const { login } = useAuth();
+
+    let name = "Azimjon Meliboev";
+
     const [isModalOpen, setIsModalOpen] = useState(false); // Modal ochish uchun state
     const closeModal = () => {
         setIsModalOpen(false); // Modalni yopish
     };
 
     const redirectToLogin = () => {
-        navigate("/login-user"); // Kirish sahifasiga yo'naltirish
+        navigate("/user-cabinet"); // Kirish sahifasiga yo'naltirish
     };
-
 
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const validationSchema = Yup.object({
         hemsId: Yup.string()
-            .matches(/^\d{14}$/, "Hems ID 14 ta raqamdan iborat bo'lishi shart!")
-            .required("Hems ID kiritilishi shart!"),
+            .matches(
+                /^\d{14}$/,
+                "Hems ID 14 ta raqamdan iborat bo'lishi shart!"
+            )
+            .required("Hemis ID kiritilishi shart!"),
         password: Yup.string()
             .matches(
                 /^[a-zA-Z0-9]+$/,
@@ -36,12 +45,27 @@ const LoginUser = () => {
             password: "",
         },
         validationSchema,
-        onSubmit: (values, {resetForm}) => {
-            // Kirish logikasi bu yerda bo'ladi
-            console.log("Kirish ma'lumotlari:", values);
+        onSubmit: (values) => {
+            // Parol va username to'g'ri bo'lsa, modalni ochish
+            if (values.password === "user123") {
+                const userData = {
+                    hemsId: values.hemsId,
+                    name: name,
+                    password: values.password,
+                    role: "user", // yoki "user"
+                };
+        
+                // Contextdagi userni o‘rnat
+                login(userData);
+                setIsModalOpen(true);
+                resetForm();
+            } else {
+                formik.setFieldError(
+                    "password",
+                    "Noto'g'ri Hemis Id yoki parol!"
+                );
+            }
             // navigate("/cabinet"); // Foydalanuvchini shaxsiy kabinetga yo‘naltirish
-            resetForm();
-            setIsModalOpen(true);
         },
     });
 
@@ -62,7 +86,7 @@ const LoginUser = () => {
                 {/* HEMS ID */}
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        HEMS ID:
+                        HEMIS ID:
                     </label>
                     <input
                         type="number"
@@ -99,7 +123,8 @@ const LoginUser = () => {
                             onBlur={formik.handleBlur}
                             className={`mt-1 w-full border bg-white dark:bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2
                             ${
-                                formik.touched.password && formik.errors.password
+                                formik.touched.password &&
+                                formik.errors.password
                                     ? "border-error focus:ring-error"
                                     : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
                             }
@@ -131,6 +156,14 @@ const LoginUser = () => {
                     Kirish
                 </button>
             </form>
+            {/* Modalni ochish */}
+            {isModalOpen && (
+                <Modal
+                    content={`Salom ${name} kirishingiz mumkin!`}
+                    onClose={closeModal}
+                    onRedirect={redirectToLogin}
+                />
+            )}
         </div>
     );
 };

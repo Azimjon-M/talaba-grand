@@ -3,6 +3,9 @@ import Service from "../Pages/Service";
 import LoginUser from "../Pages/LoginUser";
 import SignIn from "../Pages/SignIn";
 import LoginAdmins from "../Pages/LoginAdmins";
+import AdminCabinet from "../Pages/AdminCabinet"
+import UserCabinet from "../Pages/UserCabinet";
+
 
 
 const routes = [
@@ -45,6 +48,22 @@ const routes = [
         //   icon: ,
         element: LoginAdmins,
         role: null,
+    },
+    {
+        id: 6,
+        title: "AdminCabinet",
+        path: "/admin-cabinet",
+        //   icon: ,
+        element: AdminCabinet,
+        role: ["admin"],
+    },
+    {
+        id: 7,
+        title: "UserCabinet",
+        path: "/user-cabinet",
+        //   icon: ,
+        element: UserCabinet,
+        role: ["user"],
     },
 ];
 

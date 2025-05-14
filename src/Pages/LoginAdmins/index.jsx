@@ -14,7 +14,7 @@ const AdminLogin = () => {
     };
 
     const redirectToDashboard = () => {
-        navigate("/admin-dashboard"); // Admin dashboard sahifasiga yo'naltirish
+        navigate("/admin-cabinet"); // Admin dashboard sahifasiga yo'naltirish
     };
 
     const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +41,7 @@ const AdminLogin = () => {
             if (values.username === "admin" && values.password === "admin123") {
                 setIsModalOpen(true);
             } else {
+                formik.setFieldError("username", "Noto'g'ri username yoki parol!");
                 formik.setFieldError("password", "Noto'g'ri username yoki parol!");
             }
         },

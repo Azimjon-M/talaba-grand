@@ -107,7 +107,7 @@ const SignIn = () => {
                 {/* HEMS ID */}
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        HEMS ID:
+                        HEMIS ID:
                     </label>
                     <input
                         type="number"
@@ -133,7 +133,7 @@ const SignIn = () => {
                     <div className="flex items-center gap-1 mt-1 text-yellow-600 dark:text-yellow-400 text-sm">
                         ⚠️
                         <span>
-                            HEMS ID o'zingizga tegishli ekanligiga ishonch hosil
+                            HEMIS ID o'zingizga tegishli ekanligiga ishonch hosil
                             qiling!
                         </span>
                     </div>
