@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -95,7 +95,7 @@ const SignIn = () => {
     }, []);
 
     return (
-        <div className="w-full flex justify-center items-center bg-gray-100 dark:bg-gray-900 p-6 transition ">
+        <div className="w-full h-[calc(100vh-268px)] flex justify-center items-center bg-gray-100 dark:bg-gray-900 transition">
             <form
                 onSubmit={formik.handleSubmit}
                 className="bg-white dark:bg-gray-800 shadow-md rounded-md w-full max-w-md p-6 flex flex-col gap-4"
@@ -133,8 +133,8 @@ const SignIn = () => {
                     <div className="flex items-center gap-1 mt-1 text-yellow-600 dark:text-yellow-400 text-sm">
                         ⚠️
                         <span>
-                            HEMIS ID o'zingizga tegishli ekanligiga ishonch hosil
-                            qiling!
+                            HEMIS ID o'zingizga tegishli ekanligiga ishonch
+                            hosil qiling!
                         </span>
                     </div>
                 </div>
@@ -151,14 +151,15 @@ const SignIn = () => {
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
+                            autoComplete="new-password" // Bu yerda atribut qo'shildi
                             className={`mt-1 w-full border bg-white dark:bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2
-                            ${
-                                formik.touched.password &&
-                                formik.errors.password
-                                    ? "border-error focus:ring-error"
-                                    : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
-                            }
-                        `}
+                                ${
+                                    formik.touched.password &&
+                                    formik.errors.password
+                                        ? "border-error focus:ring-error"
+                                        : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
+                                }
+                            `}
                         />
                         <button
                             type="button"
@@ -197,10 +198,10 @@ const SignIn = () => {
                             value={formik.values.confirmPassword}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
+                            autoComplete="new-password" // Bu yerda atribut qo'shildi
                             className={`mt-1 w-full border bg-white dark:bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2
                                 ${
-                                    formik.touched.confirmPassword &&
-                                    formik.errors.confirmPassword
+                                    formik.touched.confirmPassword && formik.errors.confirmPassword
                                         ? "border-error focus:ring-error"
                                         : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
                                 }

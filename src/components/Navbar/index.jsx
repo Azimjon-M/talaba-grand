@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Logo from "../../assets/icons/logo.png";
 import service from "../../assets/icons/service.png";
 import admin from "../../assets/icons/admin.png";

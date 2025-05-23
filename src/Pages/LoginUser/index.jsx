@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -45,7 +45,7 @@ const LoginUser = () => {
             password: "user123",
         },
         validationSchema,
-        onSubmit: (values, {resetForm}) => {
+        onSubmit: (values) => {
             // Parol va username to'g'ri bo'lsa, modalni ochish
             if (values.password === "user123") {
                 const userData = {
@@ -74,7 +74,7 @@ const LoginUser = () => {
     };
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex justify-center items-center bg-gray-100 dark:bg-gray-900 p-4 transition">
+        <div className="w-full h-[calc(100vh-268px)] flex justify-center items-center bg-gray-100 dark:bg-gray-900 p-4 transition">
             <form
                 onSubmit={formik.handleSubmit}
                 className="bg-white dark:bg-gray-800 shadow-md rounded-md w-full max-w-md p-6 flex flex-col gap-4"
