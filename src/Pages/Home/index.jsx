@@ -1,13 +1,15 @@
-import MainSection from '../../components/MainSection'
-import OtherSection from '../../components/OtherSection'
+import Apelyatsya from "../../components/Apelyatsya";
+import GPAkorsatkichlar from "../../components/GPAkorsatkichlar";
+import MainSection from "../../components/MainSection";
 
 const Home = () => {
     return (
         <>
             <MainSection />
-            <OtherSection />
+            <Apelyatsya />
+            <GPAkorsatkichlar />
         </>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
