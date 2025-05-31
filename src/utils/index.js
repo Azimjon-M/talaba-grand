@@ -6,8 +6,6 @@ import LoginAdmins from "../Pages/LoginAdmins";
 import AdminCabinet from "../Pages/AdminCabinet"
 import UserCabinet from "../Pages/UserCabinet";
 
-
-
 const routes = [
     {
         id: 1,
