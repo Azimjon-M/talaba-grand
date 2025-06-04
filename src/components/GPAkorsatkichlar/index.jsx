@@ -9,37 +9,37 @@ const GPAkorsatkichlar = () => {
                 </h1>
                 <div className="space-y-3">
                     <p className="flex items-center gap-2">
-                        <span className="badge badge-success">3.3 - 3.39</span>
+                        <span className="badge badge-success font-semibold">3.3 - 3.39</span>
                         To'lov-kontrakt summasining{" "}
                         <span className="font-semibold">20%</span>
                     </p>
                     <p className="flex items-center gap-2">
-                        <span className="badge badge-success">3.4 - 3.49</span>
+                        <span className="badge badge-success font-semibold">3.4 - 3.49</span>
                         To'lov-kontrakt summasining{" "}
                         <span className="font-semibold">30%</span>
                     </p>
                     <p className="flex items-center gap-2">
-                        <span className="badge badge-success">3.5 - 3.59</span>
+                        <span className="badge badge-success font-semibold">3.5 - 3.59</span>
                         To'lov-kontrakt summasining{" "}
                         <span className="font-semibold">40%</span>
                     </p>
                     <p className="flex items-center gap-2">
-                        <span className="badge badge-success">3.6 - 3.69</span>
+                        <span className="badge badge-success font-semibold">3.6 - 3.69</span>
                         To'lov-kontrakt summasining{" "}
                         <span className="font-semibold">50%</span>
                     </p>
                     <p className="flex items-center gap-2">
-                        <span className="badge badge-success">3.7 - 3.79</span>
+                        <span className="badge badge-success font-semibold">3.7 - 3.79</span>
                         To'lov-kontrakt summasining{" "}
                         <span className="font-semibold">60%</span>
                     </p>
                     <p className="flex items-center gap-2">
-                        <span className="badge badge-success">3.8 - 3.89</span>
+                        <span className="badge badge-success font-semibold">3.8 - 3.89</span>
                         To'lov-kontrakt summasining{" "}
                         <span className="font-semibold">70%</span>
                     </p>
                     <p className="flex items-center gap-2">
-                        <span className="badge badge-success">3.9 - 3.99</span>
+                        <span className="badge badge-success font-semibold">3.9 - 3.99</span>
                         To'lov-kontrakt summasining{" "}
                         <span className="font-semibold">80%</span>
                     </p>

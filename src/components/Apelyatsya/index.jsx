@@ -1,6 +1,12 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Apelyatsya = () => {
+    const navigation = useNavigate();
+    const handleClick = () => {
+        localStorage.setItem("appelyatsya", true);
+        navigation("login-user");
+    };
+
     return (
         <div className="flex flex-col md:flex-row justify-between items-start w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] gap-6 mx-auto">
             <div className="card-body">
@@ -55,7 +61,7 @@ const Apelyatsya = () => {
                 </div>
                 <div className="space-y-3">
                     <div className="flex justify-center mt-6">
-                        <Link className="btn btn-primary">
+                        <Link to={"login-user"} className="btn btn-primary" onClick={handleClick}>
                             Apelyatsiya berish
                         </Link>
                     </div>

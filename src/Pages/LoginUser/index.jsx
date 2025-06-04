@@ -8,6 +8,8 @@ import { useAuth } from "../../context/AuthContext";
 
 
 const LoginUser = () => {
+    // const appelyatsy = localStorage.getItem("appelyatsya");
+
     const { login } = useAuth();
 
     let name = "Azimjon Meliboev";
