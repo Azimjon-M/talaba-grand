@@ -1,10 +1,14 @@
 import { Link } from "react-router";
 import Logo from "../../assets/icons/logo.png";
+import { Theme } from "../../styles/theme.js";
+import { FooterContainer } from "./styled.js";
+import FonAnimated from "../FonAnimated/index.jsx";
 
 const Footer = () => {
+    const { footerBg } = Theme;
     return (
-        <div className="relative flex justify-center bg-gray-500 p-4 sm:px-4 md:px-6">
-            <footer className="flex flex-col md:flex-row justify-between items-start w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] gap-6">
+        <FooterContainer color={footerBg}>
+            <footer className="flex flex-col md:flex-row justify-between text-black items-start z-30 w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] gap-6">
                 {/* Logo va Tavsif */}
                 <div className="w-full md:w-1/3 flex flex-col gap-2">
                     <Link className="flex items-center gap-2" to="/">
@@ -44,7 +48,11 @@ const Footer = () => {
                     </ul>
                 </div>
             </footer>
-        </div>
+
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+                <FonAnimated />
+            </div>
+        </FooterContainer>
     );
 };
 

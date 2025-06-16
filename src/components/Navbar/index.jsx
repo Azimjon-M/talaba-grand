@@ -3,8 +3,12 @@ import { useState, useEffect, useRef } from "react";
 import Logo from "../../assets/icons/logo.png";
 import service from "../../assets/icons/service.png";
 import admin from "../../assets/icons/admin.png";
+import {Theme} from "../../styles/theme.js"
+import {NavbarContainer} from "./styled.js";
 
 const Navbar = () => {
+    const { navbarBg } = Theme;
+    
     const [value, setValue] = useState(false);
     const [timer, setTimer] = useState(null);
     const divRef = useRef(null);
@@ -47,7 +51,7 @@ const Navbar = () => {
     }, [timer]);
 
     return (
-        <div className="relative flex justify-center bg-gray-600 p-2 sm:px-4 md:px-6 select-none overflow-hidden">
+        <NavbarContainer color={navbarBg}>
             <div
                 ref={divRef}
                 onMouseDown={handlePressStart}
@@ -60,7 +64,7 @@ const Navbar = () => {
                 }`}
             >
                 {/* Asosiy kvadrat div */}
-                <div className="w-[100px] h-[50px] flex justify-center items-center bg-[#00fff2]">
+                <div className="w-[100px] h-[50px] flex justify-center items-center bg-[#00D3BB]">
                     <Link
                         className="btn btn-neutral btn-sm sm:btn-md p-[3px]"
                         to="/login-admin"
@@ -72,27 +76,27 @@ const Navbar = () => {
                         />
                     </Link>
                 </div>
-                {/* Past tomoniga yopishtirilgan shakl */}
+                {/* Top yopishtirilgan shakl */}
                 <div
-                    className="w-[100px] h-[7px] bg-[#00fff2] absolute top-[50px] left-0"
+                    className="w-[100px] h-[7px] bg-[#00D3BB] absolute top-[50px] left-0"
                     style={{
                         clipPath: "polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%)",
                     }}
                 />
             </div>
 
-            <div className="flex justify-between items-center w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] ">
+            <div className="flex justify-between items-center w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] py-2 lg:py-4 2xl:py-6">
                 <Link className="flex items-center gap-2 sm:gap-4" to="/">
                     <div className="w-[40px!important] h-[40px!important] sm:w-[60px!important] sm:h-[60px!important]">
                         <img className="w-full h-full" src={Logo} alt="Logo" />
                     </div>
-                    <p className="max-w-[80px] font-semibold text-white italic text-[12px] leading-4 sm:max-w-[150px] sm:leading-5 sm:text-[22px]">
+                    <p className="max-w-[80px] font-semibold text-white text-shadow-lg/30 italic text-[12px] leading-4 sm:max-w-[150px] sm:leading-5 sm:text-[22px] ">
                         Qo'qon davlat universiteti
                     </p>
                 </Link>
                 <div className="flex items-center gap-2 sm:gap-4">
                     <Link
-                        className="btn btn-info btn-sm sm:btn-md p-[3px]"
+                        className="btn btn-info btn-sm sm:btn-md p-[3px] shadow-md"
                         to="/service"
                     >
                         <img
@@ -102,21 +106,21 @@ const Navbar = () => {
                         />
                     </Link>
                     <Link
-                        className="btn btn-accent btn-sm sm:btn-md p-[3px] sm:p-4"
+                        className="btn btn-accent btn-sm sm:btn-md p-[3px] sm:p-4 shadow-md"
                         to="/login-user"
                     >
                         Kirish
                     </Link>
                     <Link
-                        className="btn btn-accent btn-sm sm:btn-md p-[3px] sm:p-4"
+                        className="btn btn-accent btn-sm sm:btn-md p-[3px] sm:p-4 shadow-md"
                         to="/signin-user"
                     >
                         Ro'yxatdan o'tish
                     </Link>
                 </div>
             </div>
-            <div className="w-[100px] h-[7px] rounded-[5px,10px,15px,20px] absolute bottom-0 left-[50%] translate-x-[-50%] bg-[#00fff2] [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)] z-30" />
-        </div>
+            {/* <div className="w-[100px] h-[7px] rounded-[5px,10px,15px,20px] absolute bottom-0 left-[50%] translate-x-[-50%] bg-[#00fff2] [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)] z-30" /> */}
+        </NavbarContainer>
     );
 };
 

@@ -9,7 +9,7 @@ import fon_3 from "../../assets/fon/carousel/photo_3.jpg";
 const MainSection = () => {
     const data = [fon_1, fon_2, fon_3];
     return (
-        <section className="w-full h-[600px] flex justify-center items-center bg-gray-300">
+        <section className="w-full h-[600px] flex justify-center items-center line-gradient">
             <Swiper
                 scrollbar={{
                     hide: true,
@@ -24,13 +24,13 @@ const MainSection = () => {
             >
                 {data.map((item, idx) => (
                     <SwiperSlide
-                        key={idx}
-                        className="flex justify-center items-center"
+                        key={idx+1}
+                        className="flex justify-center items-center -z-20"
                     >
                         <img
                             src={item}
                             alt="Fon"
-                            className="object-cover w-full h-auto rounded-lg"
+                            className="object-cover w-full h-auto"
                         />
                     </SwiperSlide>
                 ))}
