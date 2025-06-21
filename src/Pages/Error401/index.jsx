@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import bg from "../../assets/fon/login.png";
-import { Box, Context, Image } from "./style";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from 'react';
+import bg from '../../assets/fon/login.png';
+import { Box, Context, Image } from './style';
+import { useNavigate } from 'react-router';
 
 const Error401 = () => {
     const message =
-        "Xaavfsizlik maqsadida saytga qaytadan kirmaguncha undan foydalana olmaysiz";
-    const [text, setText] = useState("");
+        'Xaavfsizlik maqsadida saytga qaytadan kirmaguncha undan foydalana olmaysiz';
+    const [text, setText] = useState('');
     const [hidden, setHidden] = useState(true);
     const typingSpeed = 50;
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Error401 = () => {
         let index = 0;
         const interval = setInterval(() => {
             if (index < message.length - 1) {
-                setText(prev => prev + message[index]);
+                setText((prev) => prev + message[index]);
                 index++;
             } else {
                 clearInterval(interval);
@@ -38,7 +38,7 @@ const Error401 = () => {
                     </h1>
                     <p className="mt-4">{text}</p>
                     <button
-                        onClick={() => navigate("/login")}
+                        onClick={() => navigate('/')}
                         hidden={hidden}
                         className="border border-[#314b7c] text-[#314b7c] bg-transparent py-2 px-4 rounded-lg mt-4 hover:bg-[#314b7c] hover:text-white active:bg-[#26365b] transition duration-300"
                     >

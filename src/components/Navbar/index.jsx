@@ -1,70 +1,39 @@
-import { Link } from "react-router";
-import { useState, useEffect, useRef } from "react";
-import Logo from "../../assets/icons/logo.png";
-import service from "../../assets/icons/service.png";
-import admin from "../../assets/icons/admin.png";
-import {Theme} from "../../styles/theme.js"
-import {NavbarContainer} from "./styled.js";
+import { Link } from 'react-router';
+import { useState, useRef } from 'react';
+import Logo from '../../assets/icons/QDUwhiteShadow.png';
+import service from '../../assets/icons/service.png';
+import admin from '../../assets/icons/admin.png';
+import { Theme } from '../../styles/theme.js';
+import { NavbarContainer } from './styled.js';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 const Navbar = () => {
     const { navbarBg } = Theme;
-    
     const [value, setValue] = useState(false);
     const [timer, setTimer] = useState(null);
     const divRef = useRef(null);
 
-    // 3 soniya bosish boshlanganda
-    const handlePressStart = () => {
-        const newTimer = setTimeout(() => {
-            setValue(true);
-        }, 2000);
-        setTimer(newTimer);
-    };
-
-    // Bosish tugaganda
-    const handlePressEnd = () => {
-        if (timer) {
-            clearTimeout(timer);
-            setTimer(null);
-        }
-    };
-
-    // Tashqarida bosilganda value = false qilish
-    useEffect(() => {
-        const handleOutsideClick = (event) => {
-            if (divRef.current && !divRef.current.contains(event.target)) {
-                setValue(false);
-                if (timer) {
-                    clearTimeout(timer);
-                    setTimer(null);
-                }
-            }
-        };
-
-        document.addEventListener("mousedown", handleOutsideClick);
-        document.addEventListener("touchstart", handleOutsideClick);
-
-        return () => {
-            document.removeEventListener("mousedown", handleOutsideClick);
-            document.removeEventListener("touchstart", handleOutsideClick);
-        };
-    }, [timer]);
-
     return (
         <NavbarContainer color={navbarBg}>
+            {/* ADMIN TUGMASI */}
             <div
                 ref={divRef}
-                onMouseDown={handlePressStart}
-                onMouseUp={handlePressEnd}
-                onMouseLeave={handlePressEnd}
-                onTouchStart={handlePressStart}
-                onTouchEnd={handlePressEnd}
+                onMouseDown={() => {
+                    const newTimer = setTimeout(() => setValue(true), 2000);
+                    setTimer(newTimer);
+                }}
+                onMouseUp={() => timer && clearTimeout(timer)}
+                onMouseLeave={() => timer && clearTimeout(timer)}
+                onTouchStart={() => {
+                    const newTimer = setTimeout(() => setValue(true), 2000);
+                    setTimer(newTimer);
+                }}
+                onTouchEnd={() => timer && clearTimeout(timer)}
                 className={`w-[100px] h-[50px] absolute z-30 top-0 left-[50%] translate-x-[-50%] cursor-pointer transition-all ${
-                    !value ? "translate-y-[-50px]" : "translate-y-[0]"
+                    !value ? 'translate-y-[-50px]' : 'translate-y-[0]'
                 }`}
             >
-                {/* Asosiy kvadrat div */}
-                <div className="w-[100px] h-[50px] flex justify-center items-center bg-[#00D3BB]">
+                <div className="w-[100px] h-[50px] flex justify-center items-center bg-[#00D3BB] shadow-lg shadow-gray-700">
                     <Link
                         className="btn btn-neutral btn-sm sm:btn-md p-[3px]"
                         to="/login-admin"
@@ -76,15 +45,15 @@ const Navbar = () => {
                         />
                     </Link>
                 </div>
-                {/* Top yopishtirilgan shakl */}
                 <div
                     className="w-[100px] h-[7px] bg-[#00D3BB] absolute top-[50px] left-0"
                     style={{
-                        clipPath: "polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%)",
+                        clipPath: 'polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%)',
                     }}
                 />
             </div>
 
+            {/* NAVBAR */}
             <div className="flex justify-between items-center w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] py-2 lg:py-4 2xl:py-6">
                 <Link className="flex items-center gap-2 sm:gap-4" to="/">
                     <div className="w-[40px!important] h-[40px!important] sm:w-[60px!important] sm:h-[60px!important]">
@@ -94,6 +63,9 @@ const Navbar = () => {
                         Qo'qon davlat universiteti
                     </p>
                 </Link>
+
+                {/* LIGHT/DARK MODE TOGGLER */}
+
                 <div className="flex items-center gap-2 sm:gap-4">
                     <Link
                         className="btn btn-info btn-sm sm:btn-md p-[3px] shadow-md"
@@ -119,7 +91,6 @@ const Navbar = () => {
                     </Link>
                 </div>
             </div>
-            {/* <div className="w-[100px] h-[7px] rounded-[5px,10px,15px,20px] absolute bottom-0 left-[50%] translate-x-[-50%] bg-[#00fff2] [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)] z-30" /> */}
         </NavbarContainer>
     );
 };

@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState, useEffect } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-import Modal from "../../components/Modal";
-import { useNavigate } from "react-router";
+import Modal from '../../components/Modal';
+import { useNavigate } from 'react-router';
 
 const SignIn = () => {
     const [isModalOpen, setIsModalOpen] = useState(false); // Modal ochish uchun state
+    const isError = false; // from Backend
     const navigate = useNavigate();
 
     const [captcha, setCaptcha] = useState({ num1: 0, num2: 0 });
@@ -30,14 +31,14 @@ const SignIn = () => {
     };
 
     const redirectToLogin = () => {
-        navigate("/login-user"); // Kirish sahifasiga yo'naltirish
+        navigate('/login-user'); // Kirish sahifasiga yo'naltirish
     };
 
     // Arifmetik misol noto'g'ri yechildi
     const validationSchema = Yup.object({
         hemsId: Yup.string()
-            .matches(/^\d{14}$/, "Hems Id 14 ta raqamdan iborat!")
-            .required("Hems Id 14 ta raqamdan iborat!"),
+            .matches(/^\d{14}$/, 'Hems Id 14 ta raqamdan iborat!')
+            .required('Hems Id 14 ta raqamdan iborat!'),
         password: Yup.string()
             .matches(
                 /^[a-zA-Z0-9]+$/,
@@ -48,33 +49,33 @@ const SignIn = () => {
             ),
         confirmPassword: Yup.string()
             .oneOf(
-                [Yup.ref("password")],
-                "Birinchi paroliningiz bilan nomunosiblik aniqlandi!"
+                [Yup.ref('password')],
+                'Birinchi paroliningiz bilan nomunosiblik aniqlandi!'
             )
-            .required("Birinchi paroliningiz bilan moslik aniqlanmadi!"),
-        captchaAnswer: Yup.string().required("Javobni kiriting!"),
+            .required('Birinchi paroliningiz bilan moslik aniqlanmadi!'),
+        captchaAnswer: Yup.string().required('Javobni kiriting!'),
     });
 
     // Formik setup
     const formik = useFormik({
         initialValues: {
-            hemsId: "",
-            password: "",
-            confirmPassword: "",
-            captchaAnswer: "",
+            hemsId: '11111111111111', // 14 ta raqamdan iborat bo'lishi kerak
+            password: 'Abc123',
+            confirmPassword: 'Abc123',
+            captchaAnswer: '',
         },
         validationSchema,
         onSubmit: (values, { resetForm }) => {
-            const correctAnswer = parseInt(values.captchaAnswer);
-            const captchaResult = captcha.num1 + captcha.num2;
+            const correctAnswer = Number(parseInt(values.captchaAnswer));
+            const captchaResult = Number(captcha.num1 + captcha.num2);
 
             if (correctAnswer !== captchaResult) {
-                formik.setFieldError("captchaAnswer", "Noto'g'ri javob!");
+                formik.setFieldError('captchaAnswer', "Noto'g'ri javob!");
                 return;
             }
 
             if (values.password !== values.confirmPassword) {
-                formik.setFieldError("confirmPassword", "Parollar mos emas!");
+                formik.setFieldError('confirmPassword', 'Parollar mos emas!');
                 return;
             }
             setIsModalOpen(true);
@@ -95,10 +96,10 @@ const SignIn = () => {
     }, []);
 
     return (
-        <div className="w-full h-[calc(100vh-268px)] flex justify-center items-center bg-gray-100 dark:bg-gray-900 transition">
+        <div className="w-full flex-1 flex justify-center items-center transition">
             <form
                 onSubmit={formik.handleSubmit}
-                className="bg-white dark:bg-gray-800 shadow-md rounded-md w-full max-w-md p-6 flex flex-col gap-4"
+                className="bg-white dark:bg-gray-800 shadow-lg rounded-md w-full max-w-md p-6 flex flex-col gap-4"
             >
                 <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white">
                     Ro'yxatdan o'tish
@@ -118,8 +119,8 @@ const SignIn = () => {
                         className={`mt-1 w-full border bg-white dark:bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2
                             ${
                                 formik.touched.hemsId && formik.errors.hemsId
-                                    ? "border-error focus:ring-error"
-                                    : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
+                                    ? 'border-error focus:ring-error'
+                                    : 'border-gray-300 dark:border-gray-600 focus:ring-blue-400'
                             }
                         `}
                     />
@@ -146,7 +147,7 @@ const SignIn = () => {
                     </label>
                     <div className="relative flex items-center mt-1">
                         <input
-                            type={showPassword.password ? "text" : "password"}
+                            type={showPassword.password ? 'text' : 'password'}
                             name="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
@@ -156,14 +157,14 @@ const SignIn = () => {
                                 ${
                                     formik.touched.password &&
                                     formik.errors.password
-                                        ? "border-error focus:ring-error"
-                                        : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
+                                        ? 'border-error focus:ring-error'
+                                        : 'border-gray-300 dark:border-gray-600 focus:ring-blue-400'
                                 }
                             `}
                         />
                         <button
                             type="button"
-                            onClick={() => togglePasswordVisibility("password")}
+                            onClick={() => togglePasswordVisibility('password')}
                             className="absolute right-3 hidden sm:block"
                         >
                             {showPassword.password ? (
@@ -191,8 +192,8 @@ const SignIn = () => {
                         <input
                             type={
                                 showPassword.confirmPassword
-                                    ? "text"
-                                    : "password"
+                                    ? 'text'
+                                    : 'password'
                             }
                             name="confirmPassword"
                             value={formik.values.confirmPassword}
@@ -201,16 +202,17 @@ const SignIn = () => {
                             autoComplete="new-password" // Bu yerda atribut qo'shildi
                             className={`mt-1 w-full border bg-white dark:bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2
                                 ${
-                                    formik.touched.confirmPassword && formik.errors.confirmPassword
-                                        ? "border-error focus:ring-error"
-                                        : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
+                                    formik.touched.confirmPassword &&
+                                    formik.errors.confirmPassword
+                                        ? 'border-error focus:ring-error'
+                                        : 'border-gray-300 dark:border-gray-600 focus:ring-blue-400'
                                 }
                             `}
                         />
                         <button
                             type="button"
                             onClick={() =>
-                                togglePasswordVisibility("confirmPassword")
+                                togglePasswordVisibility('confirmPassword')
                             }
                             className="absolute right-3 hidden sm:block"
                         >
@@ -246,8 +248,8 @@ const SignIn = () => {
                                 ${
                                     formik.touched.captchaAnswer &&
                                     formik.errors.captchaAnswer
-                                        ? "border-error focus:ring-error"
-                                        : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
+                                        ? 'border-error focus:ring-error'
+                                        : 'border-gray-300 dark:border-gray-600 focus:ring-blue-400'
                                 }
                             `}
                     />
@@ -269,7 +271,12 @@ const SignIn = () => {
             {/* Modalni ochish */}
             {isModalOpen && (
                 <Modal
-                    content="Muvaffaqiyatli ro'yxatdan o'tdingiz!"
+                    isError={isError}
+                    content={
+                        isError
+                            ? `HEMIS id yoki parolingiz hato!`
+                            : `Muvaffaqiyatli ro'yxatdan o'tdingiz!`
+                    }
                     onClose={closeModal}
                     onRedirect={redirectToLogin}
                 />

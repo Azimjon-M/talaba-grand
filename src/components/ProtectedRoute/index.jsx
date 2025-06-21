@@ -1,17 +1,36 @@
-import { Navigate, useLocation } from "react-router";
-import { useAuth } from "../../context/AuthContext"; // Auth contextingiz bo‘lishi kerak
+import { Navigate } from 'react-router';
+import CryptoJS from 'crypto-js';
+
+// Ma'lumotni dekodlash funksiyasi
+const decryptUserData = (encryptedData, secretKey) => {
+    try {
+        const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+        const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        return decryptedData;
+    } catch (error) {
+        console.error('Dekodlashda xatolik:', error);
+        return null;
+    }
+};
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
-    const { user } = useAuth(); // user: { role: "admin" | "user" | null }
-    const location = useLocation();
+    const secretKey = import.meta.env.VITE_USER_DATA_KEY;
+    const encryptedData = localStorage.getItem('user_data');
 
-    if (!user) {
-        // Agar login qilmagan bo‘lsa
-        return <Navigate to="/login-user" state={{ from: location }} replace />;
+    // Agar ma'lumot yo'q bo'lsa, not-authorized sahifasiga o'tadi
+    if (!encryptedData) {
+        return <Navigate to="/not-authorized" replace />;
     }
 
-    if (!allowedRoles.includes(user.role)) {
-        // Agar role mos kelmasa
+    const userData = decryptUserData(encryptedData, secretKey);
+
+    // Agar dekodlash muvaffaqiyatsiz yoki foydalanuvchi roli yo'q bo'lsa
+    if (!userData || !userData.role) {
+        return <Navigate to="/not-authorized" replace />;
+    }
+
+    // Ruxsat etilgan rollar orasida foydalanuvchi roli mavjud emas
+    if (!allowedRoles.includes(userData.role)) {
         return <Navigate to="/not-authorized" replace />;
     }
 

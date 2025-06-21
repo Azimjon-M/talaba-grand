@@ -1,15 +1,13 @@
 import styled from 'styled-components';
+// ${(props) => props.color || '#f8f9fa'}
 
 export const FooterContainer = styled.div`
-    width: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    background-color: ${({ color }) => color};
-    overflow: hidden;
-    user-select: none;
+    background: linear-gradient(
+        to right,
+        ${(props) => props.color.left || '#f8f9fa'},
+        ${(props) => props.color.right || '#f8f9fa'}
+    );
     padding: 0 8px;
-    z-index: -10;
     @media (width >= 40rem) {
         padding: 0 16px;
     }
