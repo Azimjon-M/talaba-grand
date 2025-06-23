@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import NavbarUser from '../components/NavbarUser';
+import NavbarUser from '../../components/NavbarUser';
 
 const RootUser = () => {
     return (

@@ -15,22 +15,33 @@ const decryptUserData = (encryptedData, secretKey) => {
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
     const secretKey = import.meta.env.VITE_USER_DATA_KEY;
-    const encryptedData = localStorage.getItem('user_data');
 
-    // Agar ma'lumot yo'q bo'lsa, not-authorized sahifasiga o'tadi
+    // LocalStorage'dan ma'lumotlarni olish
+    const encryptedData =
+        localStorage.getItem('admin_data') || localStorage.getItem('user_data');
+
     if (!encryptedData) {
         return <Navigate to="/not-authorized" replace />;
     }
 
     const userData = decryptUserData(encryptedData, secretKey);
 
-    // Agar dekodlash muvaffaqiyatsiz yoki foydalanuvchi roli yo'q bo'lsa
+    // Dekodlash muvaffaqiyatsiz yoki roli mavjud emas
     if (!userData || !userData.role) {
         return <Navigate to="/not-authorized" replace />;
     }
 
-    // Ruxsat etilgan rollar orasida foydalanuvchi roli mavjud emas
-    if (!allowedRoles.includes(userData.role)) {
+    // Ruxsat etilgan rollar bilan solishtirish
+    const { VITE_USER_ROLE, VITE_ADMIN_ROLE, VITE_SUPERADMIN_ROLE } =
+        import.meta.env;
+
+    const roleMapping = {
+        user: VITE_USER_ROLE,
+        admin: VITE_ADMIN_ROLE,
+        superadmin: VITE_SUPERADMIN_ROLE,
+    };
+
+    if (!allowedRoles.includes(roleMapping[userData.role])) {
         return <Navigate to="/not-authorized" replace />;
     }
 

@@ -6,11 +6,14 @@ import LoginAdmins from '../Pages/LoginAdmins';
 import AdminCabinet from '../Pages/AdminCabinet';
 import UserCabinet from '../Pages/UserCabinet';
 import UserArizlarim from '../Pages/UserArizalarim/';
+import SuperAdminCabinet from '../Pages/SuperAdminCabinet';
 import UserProfil from '../Pages/UserProfil';
+
+import { useId } from 'react';
 
 const routes = [
     {
-        id: 1,
+        id: useId,
         title: 'Home',
         path: '/',
         //   icon: ,
@@ -18,7 +21,7 @@ const routes = [
         role: null,
     },
     {
-        id: 2,
+        id: useId,
         title: 'Service',
         path: '/service',
         //   icon: ,
@@ -26,7 +29,7 @@ const routes = [
         role: null,
     },
     {
-        id: 3,
+        id: useId,
         title: 'LoginUser',
         path: '/login-user',
         //   icon: ,
@@ -34,7 +37,7 @@ const routes = [
         role: null,
     },
     {
-        id: 4,
+        id: useId,
         title: 'SignInUser',
         path: '/signin-user',
         //   icon: ,
@@ -42,7 +45,7 @@ const routes = [
         role: null,
     },
     {
-        id: 5,
+        id: useId,
         title: 'LoginAdmin',
         path: '/login-admin',
         //   icon: ,
@@ -50,7 +53,15 @@ const routes = [
         role: null,
     },
     {
-        id: 6,
+        id: useId,
+        title: 'SuperAdminCabinet',
+        path: '/superadmin-cabinet',
+        //   icon: ,
+        element: SuperAdminCabinet,
+        role: ['superadmin'],
+    },
+    {
+        id: useId,
         title: 'AdminCabinet',
         path: '/admin-cabinet',
         //   icon: ,
@@ -59,7 +70,7 @@ const routes = [
     },
     // Arizlalr jo'natish va foydalanuvchi kabineti
     {
-        id: 7,
+        id: useId,
         title: 'UserCabinet',
         path: '/user-cabinet',
         //   icon: ,
@@ -67,7 +78,7 @@ const routes = [
         role: ['user'],
     },
     {
-        id: 8,
+        id: useId,
         title: 'UserCabinetArizalarim',
         path: '/user-arizlarim',
         //   icon: ,
@@ -75,7 +86,7 @@ const routes = [
         role: ['user'],
     },
     {
-        id: 9,
+        id: useId,
         title: 'UserCabinetProfil',
         path: '/user-profil',
         //   icon: ,

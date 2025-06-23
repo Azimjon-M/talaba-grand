@@ -1,31 +1,51 @@
 import { Link } from 'react-router';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Logo from '../../assets/icons/QDUwhiteShadow.png';
 import service from '../../assets/icons/service.png';
 import admin from '../../assets/icons/admin.png';
 import { Theme } from '../../styles/theme.js';
 import { NavbarContainer } from './styled.js';
-import { FaSun, FaMoon } from 'react-icons/fa';
 
 const Navbar = () => {
     const { navbarBg } = Theme;
     const [value, setValue] = useState(false);
     const [timer, setTimer] = useState(null);
-    const divRef = useRef(null);
+    const goToAdmin = useRef(null);
+
+    // Global hodisa boshqaruvchisi
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                goToAdmin.current &&
+                !goToAdmin.current.contains(event.target)
+            ) {
+                setValue(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     return (
-        <NavbarContainer color={navbarBg}>
+        <NavbarContainer
+            color={navbarBg}
+            // onClick={handleClickOutside} // Navbarni asosiy konteynerida ishlaydi
+        >
             {/* ADMIN TUGMASI */}
             <div
-                ref={divRef}
+                ref={goToAdmin}
                 onMouseDown={() => {
-                    const newTimer = setTimeout(() => setValue(true), 2000);
+                    const newTimer = setTimeout(() => setValue(true), 1000);
                     setTimer(newTimer);
                 }}
                 onMouseUp={() => timer && clearTimeout(timer)}
                 onMouseLeave={() => timer && clearTimeout(timer)}
                 onTouchStart={() => {
-                    const newTimer = setTimeout(() => setValue(true), 2000);
+                    const newTimer = setTimeout(() => setValue(true), 1000);
                     setTimer(newTimer);
                 }}
                 onTouchEnd={() => timer && clearTimeout(timer)}
@@ -65,7 +85,6 @@ const Navbar = () => {
                 </Link>
 
                 {/* LIGHT/DARK MODE TOGGLER */}
-
                 <div className="flex items-center gap-2 sm:gap-4">
                     <Link
                         className="btn btn-info btn-sm sm:btn-md p-[3px] shadow-md"

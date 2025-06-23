@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Modal from "../../components/Modal"; // Modalni import qilamiz
-import { useNavigate } from "react-router";
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Modal from '../../components/Modal'; // Modalni import qilamiz
+import { useNavigate } from 'react-router';
+import CryptoJS from 'crypto-js'; // CryptoJS kutubxonasini import qilamiz
 
 const AdminLogin = () => {
+    const secretKey = import.meta.env.VITE_USER_DATA_KEY;
+    const secretAdminRole = import.meta.env.VITE_ADMIN_ROLE;
+    const secretSuperAdminRole = import.meta.env.VITE_SUPERADMIN_ROLE;
+
     const [isModalOpen, setIsModalOpen] = useState(false); // Modal ochish uchun state
     const navigate = useNavigate();
 
@@ -14,35 +19,74 @@ const AdminLogin = () => {
     };
 
     const redirectToDashboard = () => {
-        navigate("/admin-cabinet"); // Admin dashboard sahifasiga yo'naltirish
+        navigate('/admin-cabinet'); // Admin dashboard sahifasiga yo'naltirish
     };
 
     const [showPassword, setShowPassword] = useState(false);
 
     const validationSchema = Yup.object({
-        username: Yup.string().required("Username talab qilinadi!"),
+        username: Yup.string().required('Username talab qilinadi!'),
         password: Yup.string()
             .matches(
                 /^[a-zA-Z0-9]+$/,
                 "Parol A-Z, a-z, 0-9 belgilari qatnashgan bo'lishi shart!"
             )
-            .required("Parol talab qilinadi!"),
+            .required('Parol talab qilinadi!'),
     });
 
     // Formik setup
     const formik = useFormik({
         initialValues: {
-            username: "admin",
-            password: "admin123",
+            username: 'superadmin',
+            password: 'admin123',
         },
         validationSchema,
         onSubmit: (values) => {
-            // Parol va username to'g'ri bo'lsa, modalni ochish
-            if (values.username === "admin" && values.password === "admin123") {
-                setIsModalOpen(true);
+            if (
+                values.username === 'superadmin' &&
+                values.password === 'admin123'
+            ) {
+                const data = {
+                    username: values.username,
+                    password: values.password,
+                    role: secretSuperAdminRole,
+                };
+                const stringifiedData = JSON.stringify(data);
+                // Shifrlash
+                const encryptedData = CryptoJS.AES.encrypt(
+                    stringifiedData,
+                    secretKey
+                ).toString();
+                // Storage ga saqlash
+                localStorage.setItem('admin_data', encryptedData);
+                navigate('/superadmin-cabinet');
+            } else if (
+                values.username === 'admin' &&
+                values.password === 'admin123'
+            ) {
+                const data = {
+                    username: values.username,
+                    password: values.password,
+                    role: secretAdminRole,
+                };
+                const stringifiedData = JSON.stringify(data);
+                // Shifrlash
+                const encryptedData = CryptoJS.AES.encrypt(
+                    stringifiedData,
+                    secretKey
+                ).toString();
+                // Storage ga saqlash
+                localStorage.setItem('admin_data', encryptedData);
+                navigate('/admin-cabinet');
             } else {
-                formik.setFieldError("username", "Noto'g'ri username yoki parol!");
-                formik.setFieldError("password", "Noto'g'ri username yoki parol!");
+                formik.setFieldError(
+                    'username',
+                    "Noto'g'ri username yoki parol!"
+                );
+                formik.setFieldError(
+                    'password',
+                    "Noto'g'ri username yoki parol!"
+                );
             }
         },
     });
@@ -52,7 +96,7 @@ const AdminLogin = () => {
     };
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex justify-center items-center bg-gray-100 dark:bg-gray-900 p-4 transition">
+        <div className="w-full flex flex-1 justify-center items-center dark:bg-gray-900 p-4 transition">
             <form
                 onSubmit={formik.handleSubmit}
                 className="bg-white dark:bg-gray-800 shadow-md rounded-md w-full max-w-md p-6 flex flex-col gap-4"
@@ -74,9 +118,10 @@ const AdminLogin = () => {
                         onBlur={formik.handleBlur}
                         className={`mt-1 w-full border bg-white dark:bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2
                             ${
-                                formik.touched.username && formik.errors.username
-                                    ? "border-error focus:ring-error"
-                                    : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
+                                formik.touched.username &&
+                                formik.errors.username
+                                    ? 'border-error focus:ring-error'
+                                    : 'border-gray-300 dark:border-gray-600 focus:ring-blue-400'
                             }
                         `}
                     />
@@ -94,7 +139,7 @@ const AdminLogin = () => {
                     </label>
                     <div className="relative flex items-center mt-1">
                         <input
-                            type={showPassword ? "text" : "password"}
+                            type={showPassword ? 'text' : 'password'}
                             name="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
@@ -103,8 +148,8 @@ const AdminLogin = () => {
                             ${
                                 formik.touched.password &&
                                 formik.errors.password
-                                    ? "border-error focus:ring-error"
-                                    : "border-gray-300 dark:border-gray-600 focus:ring-blue-400"
+                                    ? 'border-error focus:ring-error'
+                                    : 'border-gray-300 dark:border-gray-600 focus:ring-blue-400'
                             }
                         `}
                         />

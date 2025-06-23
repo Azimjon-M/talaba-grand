@@ -8,6 +8,7 @@ import CryptoJS from 'crypto-js';
 
 const LoginUser = () => {
     const secretKey = import.meta.env.VITE_USER_DATA_KEY;
+    const secretUserRole = import.meta.env.VITE_USER_ROLE;
 
     const [isError, setIsError] = useState(false); // Modal xatolik holati uchun
     const [showPassword, setShowPassword] = useState(false);
@@ -56,7 +57,7 @@ const LoginUser = () => {
                         hemsId: values.hemsId,
                         name: name,
                         password: values.password,
-                        role: 'user', // yoki "user"
+                        role: secretUserRole,
                     };
                     // JSON farmatga o'tkazish
                     const stringifiedData = JSON.stringify(data);

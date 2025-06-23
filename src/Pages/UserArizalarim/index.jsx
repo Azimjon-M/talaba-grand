@@ -7,18 +7,21 @@ const UserArizlarim = () => {
             date: '2025-06-09',
             status: 'Accepted',
             isGranted: false,
+            reason: 'Hujjatlar to‘liq emas',
         },
         {
             id: 2,
             date: '2025-06-05',
             status: 'Ignored',
             isGranted: true,
+            reason: '',
         },
         {
             id: 3,
             date: '2025-06-03',
             status: 'Ignored',
             isGranted: false,
+            reason: 'Talab qilingan natijalar ko‘rsatilmagan',
         },
     ];
 
@@ -31,41 +34,52 @@ const UserArizlarim = () => {
                 {applications.map((application) => (
                     <div
                         key={application.id}
-                        className="flex items-center justify-between p-4 border-b dark:border-gray-700 last:border-none"
+                        className="flex flex-col p-4 border-b dark:border-gray-700 last:border-none"
                     >
-                        <div>
-                            <p className="text-gray-800 dark:text-gray-300">
-                                <span className="font-medium">
-                                    Berilgan Sana:
-                                </span>{' '}
-                                {application.date}
-                            </p>
-                            <p
-                                className={`font-medium ${
-                                    application.status === 'Accepted'
-                                        ? 'text-green-600'
-                                        : 'text-red-600'
-                                }`}
-                            >
-                                {application.status === 'Accepted'
-                                    ? 'Qabul qilindi'
-                                    : 'Rad etildi'}
-                            </p>
+                        <div className="flex justify-between items-center">
+                            <div>
+                                <p className="text-gray-800 dark:text-gray-300">
+                                    <span className="font-medium">
+                                        Berilgan Sana:
+                                    </span>{' '}
+                                    {application.date}
+                                </p>
+                                <p
+                                    className={`font-medium ${
+                                        application.isGranted
+                                            ? 'text-green-600'
+                                            : 'text-red-600'
+                                    }`}
+                                >
+                                    {application.isGranted
+                                        ? 'Qabul qilindi'
+                                        : 'Rad etildi'}
+                                </p>
+                            </div>
+                            <div>
+                                {application.isGranted &&
+                                    application.isGranted && (
+                                        <Link
+                                            to={{
+                                                pathname: '/user-cabinet',
+                                            }}
+                                            state={{ isApelyatsya: true }}
+                                            className="text-blue-500 hover:underline"
+                                        >
+                                            Apelyatsiya berish
+                                        </Link>
+                                    )}
+                            </div>
                         </div>
-                        <div>
-                            {application.status === 'Ignored' &&
-                                application.isGranted && (
-                                    <Link
-                                        to={{
-                                            pathname: '/user-cabinet',
-                                        }}
-                                        state={{ isApelyatsya: true }}
-                                        className="text-blue-500 hover:underline"
-                                    >
-                                        Apelyatsiya berish
-                                    </Link>
-                                )}
-                        </div>
+                        {/* Reason qo'shish */}
+                        {!application.isGranted && application.reason && (
+                            <p className="flex gap-1 mt-2 text-sm text-yellow-500">
+                                <span className="font-medium">Sababi:</span>{' '}
+                                <p className="text-black">
+                                    {application.reason}
+                                </p>
+                            </p>
+                        )}
                     </div>
                 ))}
             </div>
