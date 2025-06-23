@@ -20,64 +20,30 @@ const GPAkorsatkichlar = () => {
                             <span
                                 className={`badge badge-success font-semibold`}
                             >
-                                3.3 - 3.39
+                                3.5 - 3.99
                             </span>
-                            To'lov-kontrakt summasining{' '}
-                            <span className="font-semibold">20%</span>
+                            To'liq ta'lim grandi{' '}
+                            <span className="font-semibold">100%</span>
                         </p>
                         <p className="text-black dark:text-white flex items-center gap-2">
                             <span
                                 className={`badge badge-success font-semibold`}
                             >
-                                3.4 - 3.49
+                                3.5 - 3.99
                             </span>
-                            To'lov-kontrakt summasining{' '}
-                            <span className="font-semibold">30%</span>
-                        </p>
-                        <p className="text-black dark:text-white flex items-center gap-2">
-                            <span
-                                className={`badge badge-success font-semibold`}
-                            >
-                                3.5 - 3.59
-                            </span>
-                            To'lov-kontrakt summasining{' '}
-                            <span className="font-semibold">40%</span>
-                        </p>
-                        <p className="text-black dark:text-white flex items-center gap-2">
-                            <span
-                                className={`badge badge-success font-semibold`}
-                            >
-                                3.6 - 3.69
-                            </span>
-                            To'lov-kontrakt summasining{' '}
+                            To'liq bo'lmagan ta'lim grandi{' '}
                             <span className="font-semibold">50%</span>
                         </p>
                         <p className="text-black dark:text-white flex items-center gap-2">
                             <span
                                 className={`badge badge-success font-semibold`}
                             >
-                                3.7 - 3.79
+                                4 va undan yuqori
                             </span>
-                            To'lov-kontrakt summasining{' '}
-                            <span className="font-semibold">60%</span>
-                        </p>
-                        <p className="text-black dark:text-white flex items-center gap-2">
-                            <span
-                                className={`badge badge-success font-semibold`}
-                            >
-                                3.8 - 3.89
+                            Qo'shimcha davlat grandi{' '}
+                            <span className="font-semibold">
+                                Umumiy tartibdagi stipendya bilan ta'minlash.
                             </span>
-                            To'lov-kontrakt summasining{' '}
-                            <span className="font-semibold">70%</span>
-                        </p>
-                        <p className="text-black dark:text-white flex items-center gap-2">
-                            <span
-                                className={`badge badge-success font-semibold`}
-                            >
-                                3.9 - 3.99
-                            </span>
-                            To'lov-kontrakt summasining{' '}
-                            <span className="font-semibold">80%</span>
                         </p>
                     </div>
                     {/* <div className="divider"></div> */}

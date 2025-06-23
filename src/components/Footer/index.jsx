@@ -4,6 +4,7 @@ import { Theme } from '../../styles/theme.js';
 import { FooterContainer } from './styled.js';
 import FonAnimated from '../FonAnimated/index.jsx';
 import { FaTelegram, FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa';
+import ItParkLOgo from '../../assets/icons/ItPark_Logo.png';
 
 const Footer = () => {
     const { footerBgLeft, footerBgRight } = Theme;
@@ -47,11 +48,11 @@ const Footer = () => {
                         </p>
                         <p className="text-sm">kspi_info@edu.uz</p>
                         <a
-                            href="https://kspi.uz"
+                            href="https://kokandsu.uz/"
                             target="_blank"
                             className="text-sm underline"
                         >
-                            kspi.uz
+                            kokandsu.uz
                         </a>
                         <p className="text-sm">
                             Ishonch telefoni: +998 00 000 00 00
@@ -119,8 +120,13 @@ const Footer = () => {
 
             <div className="my-4">
                 <h1>
-                    Copyright © 2025 Qo'qon davlat universiteti. Barcha huquqlar
-                    himoyalangan.
+                    Copyright © 2025 Qo'qon davlat universiteti,{' '}
+                    <img
+                        className="w-[26px] inline-block bg-[#ffffffc1] rounded-sm p-[1px] mx-[2px]"
+                        src={ItParkLOgo}
+                        alt="It Park"
+                    />{' '}
+                    It Park. Barcha huquqlar himoyalangan.
                 </h1>
             </div>
         </FooterContainer>
