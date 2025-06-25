@@ -102,12 +102,14 @@ const Navbar = () => {
                     >
                         Kirish
                     </Link>
-                    <Link
+
+                    {/* Ro'yxatdan o'tish */}
+                    {/* <Link
                         className="btn btn-accent btn-sm sm:btn-md p-[3px] sm:p-4 shadow-md"
                         to="/signin-user"
                     >
                         Ro'yxatdan o'tish
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </NavbarContainer>

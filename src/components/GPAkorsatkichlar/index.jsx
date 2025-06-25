@@ -6,7 +6,10 @@ const GPAkorsatkichlar = () => {
     const { GPAKorsatkichBg, GPAKorsatkichTitle, GPAKorsatkichEndTexts } =
         Theme;
     return (
-        <BoxBg $bgColor={GPAKorsatkichBg} className="flex justify-center">
+        <BoxBg
+            $bgColor={GPAKorsatkichBg}
+            className="flex justify-center p-2 md:p-4"
+        >
             <div className="flex flex-col md:flex-row justify-between items-start w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] gap-6">
                 <div className="card-body px-0">
                     <TextColorBox
@@ -18,32 +21,20 @@ const GPAkorsatkichlar = () => {
                     <div className="space-y-3 ">
                         <p className="text-black dark:text-white flex items-center gap-2">
                             <span
-                                className={`badge badge-success font-semibold`}
+                                className={`badge badge-success font-semibold whitespace-nowrap`}
                             >
-                                3.5 - 3.99
+                                3.5 va undan yuqori
                             </span>
-                            To'liq ta'lim grandi{' '}
-                            <span className="font-semibold">100%</span>
+                            To'liq (100%) va To'liq bo'lmagan (50%) ta'lim grandi
+                            {/* <span className="font-semibold">100%</span> */}
                         </p>
                         <p className="text-black dark:text-white flex items-center gap-2">
                             <span
-                                className={`badge badge-success font-semibold`}
-                            >
-                                3.5 - 3.99
-                            </span>
-                            To'liq bo'lmagan ta'lim grandi{' '}
-                            <span className="font-semibold">50%</span>
-                        </p>
-                        <p className="text-black dark:text-white flex items-center gap-2">
-                            <span
-                                className={`badge badge-success font-semibold`}
+                                className={`badge badge-success font-semibold whitespace-nowrap`}
                             >
                                 4 va undan yuqori
                             </span>
-                            Qo'shimcha davlat grandi{' '}
-                            <span className="font-semibold">
-                                Umumiy tartibdagi stipendya bilan ta'minlash.
-                            </span>
+                            Qo'shimcha davlat grandi
                         </p>
                     </div>
                     {/* <div className="divider"></div> */}

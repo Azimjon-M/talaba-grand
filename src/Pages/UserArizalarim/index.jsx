@@ -26,7 +26,7 @@ const UserArizlarim = () => {
     ];
 
     return (
-        <div className="min-h-screen flex flex-col items-center bg-gray-100 dark:bg-gray-900 p-4">
+        <div className="flex flex-1 flex-col items-center bg-gray-100 dark:bg-gray-900 p-4">
             <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 Arizalarim
             </h1>

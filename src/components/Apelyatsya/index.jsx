@@ -13,7 +13,10 @@ const Apelyatsya = () => {
     // };
 
     return (
-        <BoxBg $bgColor={apelyatsiyaBg} className="flex justify-center">
+        <BoxBg
+            $bgColor={apelyatsiyaBg}
+            className="flex justify-center p-2 md:p-4"
+        >
             <div className="flex flex-col md:flex-row justify-between items-start w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] gap-6">
                 <div className="card-body px-0">
                     <TextColorBox

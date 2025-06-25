@@ -27,7 +27,7 @@ const MainSection = () => {
     ];
 
     return (
-        <section className="w-full h-[600px] flex justify-center items-center line-gradient dark:bg-gray-900">
+        <section className="w-full h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[800px] flex justify-center items-center line-gradient dark:bg-gray-900">
             <Swiper
                 scrollbar={{
                     hide: true,
@@ -53,13 +53,15 @@ const MainSection = () => {
                         />
 
                         {/* Slide Content */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center lg:items-end lg:justify-end lg:pr-[5%] lg:pb-[5%] z-40 me-20">
-                            <h2 className="text-2xl md:text-3xl font-bold text-white text-shadow-lg shadow-black ">
-                                {slide.title}
-                            </h2>
-                            <p className="mt-2 text-md md:text-lg font-semibold text-white text-shadow-lg shadow-black ">
-                                {slide.description}
-                            </p>
+                        <div className="w-full h-full flex justify-center items-end">
+                            <div className="w-full lg:max-w-5xl md:max-w-3xl xl:max-w-[1150px] 2xl:max-w-[1400px] flex flex-col items-center justify-center lg:items-end lg:justify-end mb-2 lg:pb-[5%] z-40">
+                                <h2 className="text-2xl md:text-3xl font-bold text-white text-shadow-lg shadow-black ">
+                                    {slide.title}
+                                </h2>
+                                <p className="mt-2 text-md md:text-lg font-semibold text-white text-shadow-lg shadow-black ">
+                                    {slide.description}
+                                </p>
+                            </div>
                         </div>
                     </SwiperSlide>
                 ))}

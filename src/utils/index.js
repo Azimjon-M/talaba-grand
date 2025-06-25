@@ -36,14 +36,15 @@ const routes = [
         element: LoginUser,
         role: null,
     },
-    {
-        id: useId,
-        title: 'SignInUser',
-        path: '/signin-user',
-        //   icon: ,
-        element: SignIn,
-        role: null,
-    },
+    // Ro'yxatdan o'tish
+    // {
+    //     id: useId,
+    //     title: 'SignInUser',
+    //     path: '/signin-user',
+    //     //   icon: ,
+    //     element: SignIn,
+    //     role: null,
+    // },
     {
         id: useId,
         title: 'LoginAdmin',

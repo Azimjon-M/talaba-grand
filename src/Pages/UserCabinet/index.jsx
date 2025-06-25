@@ -9,7 +9,7 @@ const UserCabinet = () => {
     const navigate = useNavigate();
     const isApelyatsya = location.state?.isApelyatsya || false;
 
-    const isTopForGPA = false;
+    const isTopForGPA = true;
 
     const [isSended, setIsSended] = useState(false);
 
@@ -53,7 +53,7 @@ const UserCabinet = () => {
     });
 
     return (
-        <div className="flex flex-1 items-center justify-center bg-gray-100 dark:bg-gray-900 min-h-screen">
+        <div className="flex flex-1 items-center justify-center bg-gray-100 dark:bg-gray-900">
             {!isSended ? (
                 <form
                     onSubmit={formik.handleSubmit}
@@ -192,9 +192,36 @@ const UserCabinet = () => {
                                     Qo'shimcha grand
                                 </h2>
                                 <div className="mb-4">
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            id="checkbox"
+                                            name="checkbox"
+                                            type="checkbox"
+                                            className="checkbox checkbox-accent mt-1"
+                                            onChange={(event) =>
+                                                formik.setFieldValue(
+                                                    'checkbox',
+                                                    event.currentTarget.files[0]
+                                                )
+                                            }
+                                        />
+                                        {formik.touched.file5 &&
+                                            formik.errors.file5 && (
+                                                <p className="text-red-600 text-sm mt-1">
+                                                    {formik.errors.file5}
+                                                </p>
+                                            )}
+                                        <label
+                                            htmlFor="checkbox"
+                                            className="block text-gray-700 dark:text-gray-300 font-medium"
+                                        >
+                                            Qo'shimcha grand olishni istaysizmi?
+                                        </label>
+                                    </div>
+
                                     <label
                                         htmlFor="file5"
-                                        className="block text-gray-700 dark:text-gray-300 font-medium"
+                                        className="block text-gray-700 dark:text-gray-300 font-medium mt-2"
                                     >
                                         5-Fayl
                                     </label>
