@@ -37,8 +37,8 @@ const SignIn = () => {
     // Arifmetik misol noto'g'ri yechildi
     const validationSchema = Yup.object({
         hemsId: Yup.string()
-            .matches(/^\d{14}$/, 'Hems Id 14 ta raqamdan iborat!')
-            .required('Hems Id 14 ta raqamdan iborat!'),
+            .matches(/^\d{14}$/, 'Hemis Id 14 ta raqamdan iborat!')
+            .required('Hemis Id 14 ta raqamdan iborat!'),
         password: Yup.string()
             .matches(
                 /^[a-zA-Z0-9]+$/,

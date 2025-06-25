@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router';
+import Asidebar from '../../components/Asidebar';
 
 const RootSuperAdmin = () => {
     return (
         <div className="flex min-h-screen">
-            <div>Aside Bar</div>
+            <Asidebar />
             <div>
                 <Outlet />
             </div>

@@ -126,7 +126,7 @@ const Footer = () => {
                         src={ItParkLOgo}
                         alt="It Park"
                     />{' '}
-                    It Park. Barcha huquqlar himoyalangan.
+                    IT PARK. Barcha huquqlar himoyalangan.
                 </h1>
             </div>
         </FooterContainer>

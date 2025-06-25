@@ -27,7 +27,7 @@ const LoginUser = () => {
         hemsId: Yup.string()
             .matches(
                 /^\d{14}$/,
-                "Hems ID 14 ta raqamdan iborat bo'lishi shart!"
+                "Hemis ID 14 ta raqamdan iborat bo'lishi shart!"
             )
             .required('Hemis ID kiritilishi shart!'),
         password: Yup.string()
