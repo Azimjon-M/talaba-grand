@@ -1,7 +1,7 @@
 import Home from '../Pages/Home';
 import Service from '../Pages/Service';
 import LoginUser from '../Pages/LoginUser';
-import SignIn from '../Pages/SignIn';
+// import SignIn from '../Pages/SignIn';
 import LoginAdmins from '../Pages/LoginAdmins';
 import AdminCabinet from '../Pages/AdminCabinet';
 import UserCabinet from '../Pages/UserCabinet';

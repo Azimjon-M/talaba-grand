@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import Modal from '../../components/Modal';
-import CryptoJS from 'crypto-js';
+import Encryption from '../../components/Encryption';
 
 const LoginUser = () => {
     const secretKey = import.meta.env.VITE_USER_DATA_KEY;
@@ -59,15 +59,8 @@ const LoginUser = () => {
                         password: values.password,
                         role: secretUserRole,
                     };
-                    // JSON farmatga o'tkazish
-                    const stringifiedData = JSON.stringify(data);
-                    // Shifrlash
-                    const encryptedData = CryptoJS.AES.encrypt(
-                        stringifiedData,
-                        secretKey
-                    ).toString();
                     // Storage ga saqlash
-                    localStorage.setItem('user_data', encryptedData);
+                    localStorage.setItem('user_data', Encryption(data, secretKey));
                     navigate('/user-cabinet');
                 } else {
                     setIsError(true);

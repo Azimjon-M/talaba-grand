@@ -1,19 +1,9 @@
 import { Navigate } from 'react-router';
-import CryptoJS from 'crypto-js';
-
-// Ma'lumotni dekodlash funksiyasi
-const decryptUserData = (encryptedData, secretKey) => {
-    try {
-        const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-        const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        return decryptedData;
-    } catch (error) {
-        console.error('Dekodlashda xatolik:', error);
-        return null;
-    }
-};
+import Decryption from '../Decryption';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
+    console.log(allowedRoles);
+
     const secretKey = import.meta.env.VITE_USER_DATA_KEY;
 
     // LocalStorage'dan ma'lumotlarni olish
@@ -24,7 +14,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
         return <Navigate to="/not-authorized" replace />;
     }
 
-    const userData = decryptUserData(encryptedData, secretKey);
+    const userData = Decryption(encryptedData, secretKey);
 
     // Agar foydalanuvchi roli mavjud bo'lmasa
     if (!userData || !userData.role) {

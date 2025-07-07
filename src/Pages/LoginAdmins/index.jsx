@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Modal from '../../components/Modal'; // Modalni import qilamiz
 import { useNavigate } from 'react-router';
-import CryptoJS from 'crypto-js'; // CryptoJS kutubxonasini import qilamiz
+import Encryption from '../../components/Encryption';
 
 const AdminLogin = () => {
     const secretKey = import.meta.env.VITE_USER_DATA_KEY;
@@ -51,14 +51,8 @@ const AdminLogin = () => {
                     password: values.password,
                     role: secretSuperAdminRole,
                 };
-                const stringifiedData = JSON.stringify(data);
-                // Shifrlash
-                const encryptedData = CryptoJS.AES.encrypt(
-                    stringifiedData,
-                    secretKey
-                ).toString();
                 // Storage ga saqlash
-                localStorage.setItem('admin_data', encryptedData);
+                localStorage.setItem('admin_data', Encryption(data, secretKey));
                 navigate('/superadmin-cabinet');
             } else if (
                 values.username === 'admin' &&
@@ -69,14 +63,8 @@ const AdminLogin = () => {
                     password: values.password,
                     role: secretAdminRole,
                 };
-                const stringifiedData = JSON.stringify(data);
-                // Shifrlash
-                const encryptedData = CryptoJS.AES.encrypt(
-                    stringifiedData,
-                    secretKey
-                ).toString();
                 // Storage ga saqlash
-                localStorage.setItem('admin_data', encryptedData);
+                localStorage.setItem('admin_data', Encryption(data, secretKey));
                 navigate('/admin-cabinet');
             } else {
                 formik.setFieldError(
